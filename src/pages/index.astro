@@ -1,23 +1,214 @@
 ---
-// src/pages/index.astro
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
-
-const posts = await getCollection("blog");
+import "../styles/global.css";
+import "../scripts/script.js"
 ---
 
-<BaseLayout title="roughblog">
-  <h1>roughblog</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rishu</title>
 
-  <ul>
-    {
-      posts.map((post) => (
-        <li>
-          <a href={`/blog/${post.slug}`}>
-            {post.data.title}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-</BaseLayout>
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    
+    <main class="container">
+
+        <header class="navbar">
+            <a class="logo" href="#home">
+                <span class="logo-star">✦</span>
+                <span>Rishu</span>
+            </a>
+
+            <nav aria-label="Primary navigation">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#blogs" class="nav-link">Blogs</a></li>
+                    <li><a href="#lessons" class="nav-link">Lessons</a></li>
+                    <li><a href="#vocab" class="nav-link">Vocabularies</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <section class="hero" id="home">
+            <div class="hero-text">
+                <p class="jp">こんにちは</p>
+
+                <h1>I'm 
+                    <span>Rishu!</span>
+                </h1>
+
+                <p class="desc">
+                    I'm from India. <br>
+                    I built this website because I wanted something that 
+                    will keep me consistent. And so I will be  writing blogs and lessons here.
+                </p>
+                
+                <div class="buttons">
+                    <a class="primary-btn" href="#lessons">Read lessons</a>
+                    <a class="secondary-btn" href="#blogs">Read Blogs</a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <img src="pfp.png" alt="Reshu profile illustration" />
+                
+                <span class="sparkle sparkle-1"></span>
+                <span class="sparkle sparkle-2"></span>
+                <span class="sparkle sparkle-3"></span>
+                <span class="sparkle sparkle-4"></span>
+            </div>
+        </section>
+        
+        <section class="cards-section">
+            <article class="card">
+                <div class="card-header">
+                    <i data-lucide="map-pinned"></i>
+                    <h3>Location</h3>
+                </div>
+                <p>India</p>
+            </article>
+
+            <article class="card">
+                <div class="card-header">
+                    <i data-lucide="languages"></i>
+                    <h3>Languages</h3>
+                </div>
+                <ul>
+                    <li>Japanese 日本語</li>
+                    <li>English</li>
+                    <li>Hindi हिन्दी</li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <div class="card-header">
+                    <i data-lucide="book-open"></i>
+                    <h3>Current Focus</h3>
+                </div>
+                <p>Watch anime without subtitles.</p>
+            </article>
+
+            <article class="card">
+                <div class="card-header">
+                    <i data-lucide="pen-line"></i>
+                    <h3>Fact about me</h3>
+                </div>
+                <p>I watch anime a lot.</p>
+            </article>
+        </section>
+
+        <section class="content-grid">
+            <section class="content-card wide" id="blogs">
+                <div class="section-head">
+                   <div>
+                    <p class="section-label">
+                        Blogs
+                    </p>
+                    <h2>Thoughts and progress notes</h2>
+                </div>
+                <i data-lucide="pen-line"></i>
+                </div>
+
+                <div class="mini-list">
+                    <a href="#" class="mini-item">
+                        <span>Why I started learning Japanese?</span>
+                        <span class="mini-tag">Blog</span>
+                    </a>
+                    <a href="#" class="mini-item">
+                        <span>ひらがな</span>
+                        <span class="mini-tag">Lesson</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="content-card" id="lessons">
+                <div class="section-head">
+                    <div>
+                        <p class="section-label">Lessons</p>
+                        <h2>Lesson-wise notes</h2>
+                    </div>
+                    <i data-lucide="book-open"></i>
+                </div>
+
+                <div class="mini-list">
+                    <a href="#" class="mini-item">
+                        <span>ひらがな</span>
+                        <span class="mini-tag"></span>
+                    </a>
+                    <a href="#" class="mini-item">
+                        <span>にほんご</span>
+                        <span class="mini-tag"></span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="content-card" id="vocab">
+                <div class="section-head">
+                    <div>
+                        <p class="section-label">Vocabularies</p>
+                        <h2>Word lists and examples</h2>
+                    </div>
+                    <i data-lucide="languages"></i>
+                </div>
+                
+                <div class="mini-list">
+                    <a href="#" class="mini-item">
+                        <span>私</span>
+                        <span class="mini-tag"></span>
+                    </a>
+                    <a href="#" class="mini-item">
+                        <span>ひらがな</span>
+                        <span class="mini-tag"></span>
+                    </a>
+                </div>
+            </section>
+        </section>
+
+        <section class="bottom-grid" id="contact">
+            <div class="quote-card">
+            <div class="quote-top">
+                <div class="quote-line"></div>
+                <div>
+                    <h2>がんばります</h2>
+                    <p>Every lesson is a small step forward.</p>
+                </div>
+            </div>
+            </div>
+
+            <div class="connect-card">
+                <h2>Contact</h2>
+                <p>Easy ways to reach me and keep the practice going.</p>
+
+            <div class="socials">
+                <a href="mailto:you@example.com" aria-label="Email">
+                    <i data-lucide="mail"></i>
+                </a>
+                <a href="#" aria-label="HelloTalk">
+                    <i data-lucide="message-circle"></i>
+                </a>
+                <a href="#" aria-label="Instagram">
+                    <i data-lucide="message-circle-dashed"></i>
+                </a>
+                <a href="#" aria-label="Discord">
+                    <i data-lucide="message-circle-more"></i>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          Built by me, あはは!!
+        </footer>
+    </main>
+
+</body>
+</html>

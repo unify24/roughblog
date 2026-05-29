@@ -1,0 +1,77 @@
+---
+import "../../styles/global.css";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog");
+posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blogs</title>
+  </head>
+
+  <body>
+    <main class="container">
+      <a href="/" class="back-link">← Home</a>
+      <h1 class="page-title">Blogs</h1>
+
+      <div class="blog-grid">
+        {posts.map((post) => (
+          <a href={`/blog/${post.id}`} class="blog-card">
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+            <small>{post.data.date}</small>
+          </a>
+        ))}
+      </div>
+    </main>
+  </body>
+</html>
+
+<style>
+  .back-link {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--accent-dark); }
+
+  .page-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--text);
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+  }
+  .blog-card h2 { font-size: 1.2rem; font-weight: 700; }
+  .blog-card p  { color: var(--text-soft); font-size: 0.95rem; flex: 1; }
+  .blog-card small { color: var(--text-soft); font-size: 0.8rem; }
+</style>
